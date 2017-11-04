@@ -1,0 +1,104 @@
+﻿[
+  {
+    "Material Name": "Ludicrite",
+    "Drag Coefficient": 0.35,
+    "Energy Bonus": 1.02,
+    "Efficiency": 1.155
+  },
+  {
+    "Material Name": "Enderium",
+    "Drag Coefficient": 0.3,
+    "Energy Bonus": 1.02,
+    "Efficiency": 0.99
+  },
+  {
+    "Material Name": "Titanium",
+    "Drag Coefficient": 0.27,
+    "Energy Bonus": 1,
+    "Efficiency": 1.023
+  },
+  {
+    "Material Name": "Shiny/Platinum",
+    "Drag Coefficient": 0.25,
+    "Energy Bonus": 1,
+    "Efficiency": 0.99
+  },
+  {
+    "Material Name": "Manyullyn/Tartarite",
+    "Drag Coefficient": 0.25,
+    "Energy Bonus": 1,
+    "Efficiency": 1.155
+  },
+  {
+    "Material Name": "Celenegil",
+    "Drag Coefficient": 0.225,
+    "Energy Bonus": 1,
+    "Efficiency": 1.089
+  },
+  {
+    "Material Name": "Electrum Flux",
+    "Drag Coefficient": 0.22,
+    "Energy Bonus": 1.01,
+    "Efficiency": 0.825
+  },
+  {
+    "Material Name": "Haderoth",
+    "Drag Coefficient": 0.2,
+    "Energy Bonus": 1,
+    "Efficiency": 0.99
+  },
+  {
+    "Material Name": "Electrum",
+    "Drag Coefficient": 0.2,
+    "Energy Bonus": 1,
+    "Efficiency": 0.825
+  },
+  {
+    "Material Name": "Gold",
+    "Drag Coefficient": 0.175,
+    "Energy Bonus": 1,
+    "Efficiency": 0.66
+  },
+  {
+    "Material Name": "Silver",
+    "Drag Coefficient": 0.15,
+    "Energy Bonus": 1,
+    "Efficiency": 0.561
+  },
+  {
+    "Material Name": "Invar",
+    "Drag Coefficient": 0.14,
+    "Energy Bonus": 1,
+    "Efficiency": 0.495
+  },
+  {
+    "Material Name": "Steel",
+    "Drag Coefficient": 0.13,
+    "Energy Bonus": 1,
+    "Efficiency": 0.495
+  },
+  {
+    "Material Name": "Aluminum",
+    "Drag Coefficient": 0.13,
+    "Energy Bonus": 1,
+    "Efficiency": 0.495
+  },
+  {
+    "Material Name": "Brass/Bronze",
+    "Drag Coefficient": 0.12,
+    "Energy Bonus": 1,
+    "Efficiency": 0.462
+  },
+  {
+    "Material Name": "Copper",
+    "Drag Coefficient": 0.12,
+    "Energy Bonus": 1,
+    "Efficiency": 0.396
+  },
+  {
+    "Material Name": "Iron",
+    "Drag Coefficient": 0.1,
+    "Energy Bonus": 1,
+    "Efficiency": 0.33
+  }
+]
