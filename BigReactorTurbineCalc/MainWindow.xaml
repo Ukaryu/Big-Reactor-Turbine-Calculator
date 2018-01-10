@@ -1,12 +1,188 @@
-﻿<Window x:Class="BigReactorTurbineCalc.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BigReactorTurbineCalc"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="BigReactorTurbineCalc.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+
+
+    <Window.Resources>
+
+        <Style x:Key="LabelValues" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="10,0,10,10"/>
+            <Setter Property="Background" Value="#353131"/>
+            <Setter Property="Foreground" Value="Orange"/>
+        </Style>
+
+        <Style x:Key="LabelTitles" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="Background" Value="#242222"/>
+            <Setter Property="Foreground" Value="Orange"/>
+        </Style>
+
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
+            </Style.Resources>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#504949" />
+                    <Setter Property="BorderBrush" Value="Orange"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Orange" Background="#443c3c">
+                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Orange" />
+            <Setter Property="FontSize" Value="13" />
+            
+        </Style>
+
         
+    </Window.Resources>
+
+
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid DockPanel.Dock="Top" 
+          x:Name="InfoGrid" 
+          ShowGridLines="True" 
+          Width="Auto" 
+          Height="Auto" 
+          Background="#242222">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Column="0" Grid.Row="0">
+
+            <ComboBox  x:Name="materialsComboBox"   
+                       Margin="10,10,10,10" 
+                       VerticalAlignment="Top" 
+                       Width="170"
+                       ItemsSource="{Binding listOfMaterials}"
+                       SelectedItem="{Binding selectedMaterial}"
+                       SelectedIndex="0" 
+                       Style="{DynamicResource ComboBoxStyle1}">
+
+                
+                
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding name}" Foreground="Orange"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+
+            <Label Style="{StaticResource LabelTitles}" Content="Drag Coefficient:"/>
+
+            <Label Style="{StaticResource LabelValues}" Content="{Binding selectedMaterial.dragCoefficient}"/>
+
+            <Label Style="{StaticResource LabelTitles}" Content="Energy Bonus:"/>
+
+            <Label Style="{StaticResource LabelValues}" Content="{Binding selectedMaterial.energyBonus}"/>
+
+            <Label Style="{StaticResource LabelTitles}" Content="Efficiency:"/>
+
+            <Label Style="{StaticResource LabelValues}" Content="{Binding selectedMaterial.efficiency}"/>
+
+        </StackPanel>
+
+        <ListView Grid.Column="1" 
+                  HorizontalAlignment="Stretch"
+                  Grid.Row="0" 
+                  Margin="10,10,10,10" 
+                  Background="#353131"
+                  ItemsSource="{Binding mostEfficient}" 
+                  BorderBrush="Orange">
+           
+            <ListView.View>
+                <GridView >
+                    
+                    <GridViewColumn Header="Coil Blocks" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label HorizontalAlignment="Center" Content="{Binding coilBlocks}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Blade Count" Width="Auto" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label HorizontalAlignment="Center" Content="{Binding bladeCount}"  Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Shaft Count" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label HorizontalAlignment="Center" Content="{Binding shaftCount}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Efficiency" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding efficiency, StringFormat={}{0:#,0.00}}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Energy (RF/t)" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding energyGeneration, StringFormat={}{0:#,0}}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Steam Required (MB/t)" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding steamIn, StringFormat={}{0:#,0}}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Rotor Speed (RPM) " Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding rotorSpeed, StringFormat={}{0:#,0}}" Foreground="Orange"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

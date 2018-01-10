@@ -23,8 +23,6 @@ namespace BigReactorTurbineCalc
         public MainWindow()
         {
             InitializeComponent();
-
-            Console.WriteLine("test");
         }
     }
 }
